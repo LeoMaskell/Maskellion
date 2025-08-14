@@ -13,6 +13,17 @@ app.get('/', (req, res) => {
     console.log(`loads: ${loads}`);
 });
 
+app.get('/lib.html', (req, res) => {
+    res.sendFile(__dirname + '/frontend/lib.html');
+});
+
+app.get('/settings.html', (req, res) => {
+    res.sendFile(__dirname + '/frontend/settings.html');
+});
+
+app.get('/song.html', (req, res) => {
+    res.sendFile(__dirname + '/frontend/song.html');
+});
 
 //static files
 app.get('/style.css', (req, res) => {

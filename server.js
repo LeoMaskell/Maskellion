@@ -94,6 +94,18 @@ app.get('/albums', (req, res) => {
 
 
 // POST requests
+// db Post requests
+app.post('/search', (req, res) => {
+    const searchTerm = req.body.query;
+    db.all('SELECT * FROM albums AND songs WHERE name LIKE ?', [`%${searchTerm}%`], (err, rows) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        res.json(rows);
+        console.log(rows)
+    });
+});
 
 
 // forward the port

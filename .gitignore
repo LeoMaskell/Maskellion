@@ -1,2 +1,2 @@
 # hide the sqlite files to git
-*.sqlite
+backend/db.sqlite

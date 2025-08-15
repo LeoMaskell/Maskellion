@@ -88,7 +88,7 @@ app.get('/albums', (req, res) => {
             return;
         }
         res.json(rows);
-        console.log('rows')
+        console.log(rows)
     });
 });
 

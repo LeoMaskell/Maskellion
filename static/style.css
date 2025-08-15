@@ -66,7 +66,8 @@ body {
 }
 
 .nav a{
-    max-width: 50px;
+    max-width: 75px;
+    bottom: 5px;
 }
 
 .nav img {
@@ -76,4 +77,21 @@ body {
 .nav img:hover {
     transform: scale(1.2);
     transition: all;
+}
+
+.nav li:hover {
+    transform: scale(1.1);
+    transition: 0.25s ease-in-out;
+}
+
+.nav .active {
+    border-radius: 10px;
+    padding: 15px;
+    padding-top: 25px;
+    background-color: rgb(150, 150, 200);
+    width: 75%;
+    margin: 0 auto;
+    top: 0;
+    border: solid black;
+    border-width: 2px;
 }

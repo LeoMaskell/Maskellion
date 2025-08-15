@@ -32,8 +32,15 @@ app.get('/song.html', (req, res) => {
 
 //static files
 app.get('/style.css', (req, res) => {
-    res.sendFile(__dirname + '/static/logo.png');
+    res.sendFile(__dirname + '/static/style.css');
 });
+
+
+// script files
+app.get('/indexscript.js', (req, res) => {
+    res.sendFile(__dirname + '/static/script/indexscript.js')
+});
+
 
 app.get('/logo', (req, res) => {
     res.sendFile(__dirname + '/static/logo.png');

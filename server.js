@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express()
 const port = process.env.PORT || 10000;
+const db = require('./backend/db');
 
 app.use(express.json());
 
@@ -76,6 +77,19 @@ app.get('/settings', (req, res) => {
 
 app.get('/settingsH', (req, res) => {
     res.sendFile(__dirname + '/static/icons/settingsH.png');
+});
+
+
+// db stuff
+app.get('/albums', (req, res) => {
+    db.all('SELECT * FROM albums', [], (err, rows) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        res.json(rows);
+        console.log('rows')
+    });
 });
 
 

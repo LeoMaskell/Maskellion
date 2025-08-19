@@ -39,7 +39,11 @@ app.get('/style.css', (req, res) => {
 
 // script files
 app.get('/indexscript.js', (req, res) => {
-    res.sendFile(__dirname + '/static/script/indexscript.js')
+    res.sendFile(__dirname + '/static/script/indexscript.js');
+});
+
+app.get('/searchscript.js', (req, res) => {
+    res.sendFile(__dirname + '/static/script/searchscript.js');
 });
 
 
@@ -97,13 +101,19 @@ app.get('/albums', (req, res) => {
 // db Post requests
 app.post('/search', (req, res) => {
     const searchTerm = req.body.query;
-    db.all('SELECT * FROM albums AND songs WHERE name LIKE ?', [`%${searchTerm}%`], (err, rows) => {
+    const sql = `
+        SELECT 'album' AS type, id, name FROM albums WHERE name LIKE ?
+        UNION
+        SELECT 'song' AS type, id, name FROM songs WHERE name LIKE ?
+    `;
+    db.all(sql, [`%${searchTerm}%`, `%${searchTerm}%`], (err, rows) => {
         if (err) {
             res.status(500).json({ error: err.message });
+            console.log(err)
             return;
         }
         res.json(rows);
-        console.log(rows)
+        console.log(rows);
     });
 });
 
